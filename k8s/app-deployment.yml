@@ -4,7 +4,7 @@
  metadata:
    name: rails-app-deployment
  spec:
-   replicas: 2
+   replicas: 1
    selector:
      matchLabels:
        app: rails-app
