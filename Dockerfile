@@ -18,8 +18,8 @@ COPY . .
 
 RUN bundle install
 
-RUN yarn install --check-files
-
 RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@127.0.0.1/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
 
-CMD rails server
+RUN yarn install --check-files
+
+CMD bundle exec unicorn -c config/unicorn.rb
