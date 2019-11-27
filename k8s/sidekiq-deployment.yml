@@ -1,0 +1,25 @@
+---
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: sidekiq-deployment
+ spec:
+   selector:
+     matchLabels:
+       app: sidekiq
+   replicas: 1
+   template:
+     metadata:
+       name: sidekiq
+       label:
+         app: sidekiq
+     spec:
+       containers:
+         - name: rails-sidekiq
+           image: roshdy/k8s-rails-app
+           imagePullPolicy: "Never"
+           envFrom:
+             - configMapRef:
+                 name: rails-app-config
+           command: ['bundle exec sidekiq']
+
