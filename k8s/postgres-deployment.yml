@@ -10,11 +10,12 @@
    replicas: 2
    template:
      metadata:
+       name: postgres
        labels:
          app: postgres
      spec:
        containers:
-         - name: postgresdb
+         - name: postgres
            image: postgres
            envFrom:
              - configMapRef:
