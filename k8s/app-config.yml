@@ -7,6 +7,6 @@ data:
   WORKER_PROCESSES: "1"
   LISTEN_ON: 0.0.0.0:8000
   SECRET_TOKEN: mysecrettoken
-  DATABASE_URL: postgresql://roshdy:admin1234@postgres:5432/roshdy?encoding=utf8&pool=5&timeout=10000
+  DATABASE_URL: postgresql://roshdy:admin1234@postgres:5432/roshdy?encoding=utf8&pool=5&timeout=5000
   CACHE_URL: redis://redis:6379/0
   JOB_WORKER_URL: redis://redis:6379/0
