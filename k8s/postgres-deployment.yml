@@ -20,6 +20,12 @@
            envFrom:
              - configMapRef:
                  name: postgres-config
+           volumeMounts:
+             - mountPath: /var/lib/postgresql/data
+               name: postgresdb
            ports:
              - containerPort: 5432
-     
+       volumes:
+         - name: postgresdb
+           persistentVolumeClaim:
+             claimName: postgres-pv-claim

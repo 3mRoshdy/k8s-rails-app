@@ -1,0 +1,20 @@
+---
+ apiVersion: batch/v1
+ kind: Job
+ metadata:
+  name: setup
+ spec:
+  template:
+    metadata:
+      name: setup
+    spec:
+      containers:
+      - name: setup
+        image: roshdy/k8s-rails-app
+        imagePullPolicy: "Never"
+        command: ["/bin/sh"]
+        args: ["-c", "bundle exec rake db:create && bundle exec rake db:migrate"]
+        envFrom:
+          - configMapRef:
+              name: rails-config
+      restartPolicy: Never        

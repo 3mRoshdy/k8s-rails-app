@@ -11,7 +11,7 @@
    template:
      metadata:
        name: sidekiq
-       label:
+       labels:
          app: sidekiq
      spec:
        containers:
@@ -20,6 +20,7 @@
            imagePullPolicy: "Never"
            envFrom:
              - configMapRef:
-                 name: rails-app-config
-           command: ['bundle exec sidekiq']
+                 name: rails-config
+           command: ["/bin/sh"]
+           args: ["-c", "bundle exec sidekiq"]
 

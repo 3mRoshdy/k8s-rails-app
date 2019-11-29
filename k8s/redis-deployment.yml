@@ -19,3 +19,10 @@
            image: redis
            ports:
              - containerPort: 6379
+           volumeMounts:
+             - mountPath: /var/lib/redis/data
+               name: redis-cache
+       volumes:
+         - name: redis-cache
+           persistentVolumeClaim:
+             claimName: redis-pv-claim
