@@ -2,8 +2,8 @@
 This Project runs rails app with postgres,redis and sidekiq using kubernetes.
 
 ## Prerequisites
-1. minikube on machine
-2. docker on machine
+1. minikube on machine `Version: v1.5.2`
+2. docker on machine `Version: 19.03.5`
 
 ## Setup
 ### Rails App setup
