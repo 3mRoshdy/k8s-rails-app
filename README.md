@@ -3,6 +3,7 @@ This Project runs rails app with postgres,redis and sidekiq using kubernetes.
 
 ## Prerequisites
 1. minikube on machine
+2. docker on machine
 
 ## Setup
 ### Rails App setup
@@ -52,25 +53,30 @@ File related for each structure
 ### Running the app:
 To run the app using kubernetes:
 1. make sure minikube is up.
+2. you need to build the docker image locally on minikube since it is not pushed on docker hub using `eval $(minikube docker-env)`.
 
-2. create postgres configmap using `kubectl create -f k8s/postgres-configmap.yml`
-3. create postgres volume using  `kubectl create -f k8s/postgres-volume.yml`
-4. create postgres service using  `kubectl create -f k8s/postgres-service.yml`
-5. create postgres deployment using  `kubectl create -f k8s/postgres-deployment.yml`
+Note: after this you can make sure that you are now looking on minikube docker images using `docker image ls` and find images starting with `k8s.gcr.io/`.
 
-6. create redis volume using  `kubectl create -f k8s/redis-volume.yml`
-7. create redis service using  `kubectl create -f k8s/redis-service.yml`
-8. create redis deployment using  `k`
+3. build docker image using `docker image build -t roshdy/k8s-rails-app .` (DON'T Change image name).
 
-9. create rails app configmap using  `kubectl create -f k8s/app-config.yml`
-10. create rails app job using `kubectl create -f k8s/app-setup-job.yml`
-11. create rails app service using `kubectl create -f k8s/app-service.yml`
-12. create rails app deployment using `kubectl create -f k8s/app-deployment.yml`
+4. create postgres configmap using `kubectl create -f k8s/postgres-configmap.yml`
+5. create postgres volume using  `kubectl create -f k8s/postgres-volume.yml`
+6. create postgres service using  `kubectl create -f k8s/postgres-service.yml`
+7. create postgres deployment using  `kubectl create -f k8s/postgres-deployment.yml`
 
-13. create sidekiq service using  `kubectl create -f k8s/sidekiq-service.yml`
-14. create sidekiq deployment using  `kubectl create -f k8s/sidekiq-deployment.yml`
+8. create redis volume using  `kubectl create -f k8s/redis-volume.yml`
+9. create redis service using  `kubectl create -f k8s/redis-service.yml`
+10. create redis deployment using  `kubectl create -f k8s/redis-deployment.yml`
 
-15. run `kubectl get svc -o wide` to get the service name for the rails app.
-16. run `minikube service rails-app --url` to get the remote url.
-17. open the url in your browser you should see the rails app running.
-18. you can navigate to `/posts` in the url to see the database changes.
+11. create rails app configmap using  `kubectl create -f k8s/app-config.yml`
+12. create rails app job using `kubectl create -f k8s/app-setup-job.yml`
+13. create rails app service using `kubectl create -f k8s/app-service.yml`
+14. create rails app deployment using `kubectl create -f k8s/app-deployment.yml`
+
+15. create sidekiq service using  `kubectl create -f k8s/sidekiq-service.yml`
+16. create sidekiq deployment using  `kubectl create -f k8s/sidekiq-deployment.yml`
+
+17. run `kubectl get svc -o wide` to get the service name for the rails app.
+18. run `minikube service rails-app --url` to get the remote url.
+19. open the url in your browser you should see the rails app running.
+20. you can navigate to `/posts` in the url to see the database changes.
