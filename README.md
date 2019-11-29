@@ -60,7 +60,7 @@ To run the app using kubernetes:
 
 6. create redis volume using  `kubectl create -f k8s/redis-volume.yml`
 7. create redis service using  `kubectl create -f k8s/redis-service.yml`
-8. create redis deployment using  `kubectl create -f k8s/redis-deployment.yml`
+8. create redis deployment using  `k`
 
 9. create rails app configmap using  `kubectl create -f k8s/app-config.yml`
 10. create rails app job using `kubectl create -f k8s/app-setup-job.yml`
@@ -70,6 +70,7 @@ To run the app using kubernetes:
 13. create sidekiq service using  `kubectl create -f k8s/sidekiq-service.yml`
 14. create sidekiq deployment using  `kubectl create -f k8s/sidekiq-deployment.yml`
 
-15. run `kubectl svc -o wide` to get the service name for the rails app.
+15. run `kubectl get svc -o wide` to get the service name for the rails app.
 16. run `minikube service rails-app --url` to get the remote url.
 17. open the url in your browser you should see the rails app running.
+18. you can navigate to `/posts` in the url to see the database changes.
